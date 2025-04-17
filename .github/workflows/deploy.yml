@@ -1,0 +1,29 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to EC2 via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script_stop: true
+        script: |
+          echo "Starting deployment..."
+          export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+          cd ~/E-com
+          git pull origin main
+          docker-compose down
+          docker-compose up --build -d
+          echo "? Deployment complete!"
