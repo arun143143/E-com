@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    SignupView, LoginView, ProtectedView, RefreshTokenView,
+    LoginView, ProtectedView, RefreshTokenView,
     EmployeeList, EmpDetails, ProductsView, AddProductView, 
     CartView, AddToCartView, RemoveFromCartView, productdetails, 
     CheckoutView,OrderHistoryView,WebhookView,InitiatePaymentView
