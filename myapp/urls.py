@@ -1,13 +1,13 @@
 from django.urls import path
 from .views import (
-    LoginView, ProtectedView, RefreshTokenView,
+    SignupView, LoginView, ProtectedView, RefreshTokenView,
     EmployeeList, EmpDetails, ProductsView, AddProductView, 
     CartView, AddToCartView, RemoveFromCartView, productdetails, 
     CheckoutView,OrderHistoryView,WebhookView,InitiatePaymentView
 )
 
 urlpatterns = [
-    
+    path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
     path('protected/', ProtectedView.as_view(), name='protected'),
     path('refresh-token/', RefreshTokenView.as_view(), name='refresh_token'),
